@@ -559,7 +559,7 @@ def assemble_sparse_matrix(subtree: dict) -> scipy.sparse.spmatrix:
         indptr = subtree["data"][2]
         if indptr[-1] != subtree["data"][0].shape[0]:
             # indptr is diff-ed
-            subtree["data"][2] = indptr.cumsum()
+            subtree["data"][2][:] = indptr.cumsum()
     matrix = matrix_class(tuple(subtree["data"]), shape=subtree["shape"])
     return matrix
 
